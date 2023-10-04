@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "2023-Lab-Part1.sln"
+    "dotnet.defaultSolution": "GameLabCheckoff.sln"
 }
