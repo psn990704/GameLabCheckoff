@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 389460917316423513}
   - component: {fileID: 251286106515958177}
   - component: {fileID: 5309939718475424379}
+  - component: {fileID: 6870319928720107077}
   m_Layer: 7
   m_Name: Coin
   m_TagString: Untagged
@@ -231,6 +232,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6870319928720107077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602545735147302202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7beef0924e1541499646ad7ffa2fb98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameter: 0
+  useInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: IncreaseScore
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6219594820020826531
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,9 +6,9 @@ using TMPro;
 public class JumpOverGoomba : MonoBehaviour
 {
     public Transform enemyLocation;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverScoreText;
     private bool onGroundState;
+
+    GameManager gameManager;
 
     [System.NonSerialized]
     public int score = 0; // we don't want this to show up in the inspector
@@ -20,7 +20,7 @@ public class JumpOverGoomba : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
 
     }
 
@@ -46,10 +46,7 @@ public class JumpOverGoomba : MonoBehaviour
             if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
             {
                 countScoreState = false;
-                score++;
-                scoreText.text = "Score: " + score.ToString();
-                gameOverScoreText.text = "Score: " + score.ToString();
-                Debug.Log(score);
+                gameManager.IncreaseScore(1);
             }
         }
     }

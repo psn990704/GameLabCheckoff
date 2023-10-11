@@ -17,13 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool onGroundState = true;
     private Rigidbody2D marioBody;
 
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverScoreText;
     public GameObject enemies;
-    public GameObject gameOverUI;
-    public GameObject onGameUI;
-
-    public JumpOverGoomba jumpOverGoomba;
     public float deathImpulse = 45;
     // for animation
     public Animator marioAnimator;
@@ -37,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool jumpedState = false;
 
-    public Animator questionBlockAnimator;
+    public GameManager gameManager;
+
 
     // state
     [System.NonSerialized]
@@ -136,38 +131,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void RestartButtonCallback(int input)
+    public void RestartButtonCallback()
     {
         Debug.Log("Restart!");
         // reset everything
         ResetGame();
         // resume time
-        Time.timeScale = 1.0f;
     }
 
     private void ResetGame()
     {
         // reset position
         marioBody.transform.position = new Vector3(-10f, -2f, 0f);
+
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
-        // reset score
-        scoreText.text = "Score: 0";
-        gameOverScoreText.text = "Score: 0";
-        // reset Goomba
-        foreach (Transform eachChild in enemies.transform)
-        {
-            eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
-        }
-        // reset score
-        jumpOverGoomba.score = 0;
 
-        gameOverUI.SetActive(false);
-        onGameUI.SetActive(true);
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
-
         alive = true;
 
         // reset camera position
@@ -185,14 +167,7 @@ public class PlayerMovement : MonoBehaviour
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
     }
 
-    void GameOverScene()
-    {
-        // stop time
-        Time.timeScale = 0.0f;
-        // set gameover scene
-        gameOverUI.SetActive(true);
-        onGameUI.SetActive(false); // replace this with whichever way you triggered the game over screen for Checkoff 1
-    }
+
 
     public void Jump()
     {
@@ -218,6 +193,9 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-
+    public void GameOverScene()
+    {
+        gameManager.GameOver();
+    }
 
 }

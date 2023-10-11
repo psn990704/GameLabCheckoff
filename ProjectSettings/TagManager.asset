@@ -10,6 +10,7 @@ TagManager:
   - Mariohead
   - QuestionBlock
   - Brick
+  - Manager
   layers:
   - Default
   - TransparentFX

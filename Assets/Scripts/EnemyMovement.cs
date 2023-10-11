@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
 
     public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
+
     void Start()
     {
         enemyBody = GetComponent<Rigidbody2D>();
@@ -48,5 +49,12 @@ public class EnemyMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.gameObject.name);
+    }
+    public void GameRestart()
+    {
+        transform.localPosition = startPosition;
+        originalX = transform.position.x;
+        moveRight = -1;
+        ComputeVelocity();
     }
 }
