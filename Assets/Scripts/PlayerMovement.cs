@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool jumpedState = false;
 
+    public Animator questionBlockAnimator;
+
     // state
     [System.NonSerialized]
     public bool alive = true;
@@ -146,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
     private void ResetGame()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-10f, -2f, 0.8550403f);
+        marioBody.transform.position = new Vector3(-10f, -2f, 0f);
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
@@ -165,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
         onGameUI.SetActive(true);
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
+
         alive = true;
 
         // reset camera position
