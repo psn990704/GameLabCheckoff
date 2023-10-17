@@ -22,10 +22,12 @@ public class PlayerMovement : MonoBehaviour
     // for animation
     public Animator marioAnimator;
 
+    public Animator goombaAnimator;
+
     // for audio
     public AudioSource marioAudio;
 
-    public AudioClip marioDeath;
+    public AudioSource marioDeath;
 
     private bool moving = false;
 
@@ -126,7 +128,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Collided with goomba!");
             // play death animation
             marioAnimator.Play("Mario-Die");
-            marioAudio.PlayOneShot(marioDeath);
+            marioDeath.PlayOneShot(marioDeath.clip);
+            PlayDeathImpulse();
             alive = false;
         }
     }
@@ -150,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
+        goombaAnimator.SetTrigger("gameRestart");
         alive = true;
 
         // reset camera position

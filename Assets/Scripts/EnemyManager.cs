@@ -20,6 +20,10 @@ public class EnemyManager : MonoBehaviour
         foreach (Transform child in transform)
         {
             child.GetComponent<EnemyMovement>().GameRestart();
+            foreach (GameObject childChild in child)
+            {
+                childChild.GetComponent<StompGoomba>().GameRestart();
+            }
         }
     }
 }

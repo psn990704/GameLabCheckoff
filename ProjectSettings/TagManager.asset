@@ -11,6 +11,7 @@ TagManager:
   - QuestionBlock
   - Brick
   - Manager
+  - MarioFoot
   layers:
   - Default
   - TransparentFX

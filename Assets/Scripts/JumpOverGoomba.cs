@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class JumpOverGoomba : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class JumpOverGoomba : MonoBehaviour
             if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
             {
                 countScoreState = false;
-                gameManager.IncreaseScore(1);
+                //gameManager.IncreaseScore(1);
             }
         }
     }
@@ -55,6 +56,8 @@ public class JumpOverGoomba : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
     }
+
+
 
 
     private bool onGroundCheck()
