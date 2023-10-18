@@ -15,13 +15,21 @@ public class EnemyMovement : MonoBehaviour
 
     public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
+    private bool isStomped;
+
+    public GameObject goombaHead;
+
+
+
 
     void Start()
     {
         enemyBody = GetComponent<Rigidbody2D>();
+
         // get the starting position
         originalX = transform.position.x;
         ComputeVelocity();
+        isStomped = false;
     }
     void ComputeVelocity()
     {
@@ -34,16 +42,19 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(enemyBody.position.x - originalX) < maxOffset)
-        {// move goomba
-            Movegoomba();
-        }
-        else
+        if (isStomped == false)
         {
-            // change direction
-            moveRight *= -1;
-            ComputeVelocity();
-            Movegoomba();
+            if (Mathf.Abs(enemyBody.position.x - originalX) < maxOffset)
+            {// move goomba
+                Movegoomba();
+            }
+            else
+            {
+                // change direction
+                moveRight *= -1;
+                ComputeVelocity();
+                Movegoomba();
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -56,5 +67,17 @@ public class EnemyMovement : MonoBehaviour
         originalX = transform.position.x;
         moveRight = -1;
         ComputeVelocity();
+        goombaHead.GetComponent<StompGoomba>().GameRestart();
+        isStomped = false;
+    }
+
+    public void Stomp()
+    {
+        isStomped = true;
+    }
+
+    public void Disappear()
+    {
+        goombaHead.GetComponent<StompGoomba>().Disappear();
     }
 }

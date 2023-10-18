@@ -1,24 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StompGoomba : MonoBehaviour
 {
-    public Animator goombaAnimator;
     public GameObject goomba;
-    private BoxCollider2D goombaBoxCollide;
-    private EdgeCollider2D goombaFootEdgeCollide;
-    private Rigidbody2D goombaRigid;
-    private bool isStomping;
+    private Rigidbody2D goombaBody;
+    private BoxCollider2D goombaBoxCollider;
+    private BoxCollider2D goombaHeadBoxCollider;
+    public Animator goombaAnimator;
+    public AudioSource goombaStomp;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        goombaBoxCollide = goomba.GetComponent<BoxCollider2D>();
-        goombaFootEdgeCollide = GetComponent<EdgeCollider2D>();
-        goombaRigid = goomba.GetComponent<Rigidbody2D>();
-        isStomping = false;
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        goombaBody = goomba.GetComponent<Rigidbody2D>();
+        goombaBoxCollider = goomba.GetComponent<BoxCollider2D>();
+        goombaHeadBoxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -26,31 +26,31 @@ public class StompGoomba : MonoBehaviour
     {
 
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("MarioFoot") && !isStomping)
+        if (other.gameObject.CompareTag("MarioFoot"))
         {
-            isStomping = true;
-            Debug.Log("triggered2");
-            goombaBoxCollide.enabled = false;
-            goombaFootEdgeCollide.enabled = false;
-            goombaRigid.bodyType = RigidbodyType2D.Static;
+            Debug.Log("Triggered");
+            goomba.GetComponent<EnemyMovement>().Stomp();
+            goombaBoxCollider.enabled = false;
+            goombaHeadBoxCollider.enabled = false;
+            goombaBody.bodyType = RigidbodyType2D.Static;
             goombaAnimator.Play("goomba-stomped");
-            isStomping = false;
+            goombaStomp.PlayOneShot(goombaStomp.clip);
+            gameManager.IncreaseScore(1);
         }
     }
-
-    public void GoombaDisappear()
-    {
-        goomba.SetActive(false);
-    }
-
     public void GameRestart()
     {
+        Debug.Log("StompRestart");
         goomba.SetActive(true);
-        goombaBoxCollide.enabled = true;
-        goombaFootEdgeCollide.enabled = true;
-        goombaRigid.bodyType = RigidbodyType2D.Kinematic;
+        goombaAnimator.Play("goomba-normal");
+        goombaBoxCollider.enabled = true;
+        goombaHeadBoxCollider.enabled = true;
+        goombaBody.bodyType = RigidbodyType2D.Kinematic;
+    }
+    public void Disappear()
+    {
+        goomba.SetActive(false);
     }
 }

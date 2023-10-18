@@ -22,8 +22,6 @@ public class PlayerMovement : MonoBehaviour
     // for animation
     public Animator marioAnimator;
 
-    public Animator goombaAnimator;
-
     // for audio
     public AudioSource marioAudio;
 
@@ -153,7 +151,6 @@ public class PlayerMovement : MonoBehaviour
 
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
-        goombaAnimator.SetTrigger("gameRestart");
         alive = true;
 
         // reset camera position

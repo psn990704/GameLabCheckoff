@@ -148,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.001229763, y: 0.0039411783}
+  m_Offset: {x: -0.001229763, y: -0.020102024}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0310106, y: 1.0226672}
+  m_Size: {x: 1.0310106, y: 0.97458076}
   m_EdgeRadius: 0
 --- !u!114 &8863248475286654987
 MonoBehaviour:
@@ -173,7 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f020a2afba42b64db65266ced4eae6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: 10, y: -4.5, z: 0.8550403}
+  startPosition: {x: 10, y: -4.5, z: 0}
+  goombaHead: {fileID: 4718596578480338609}
 --- !u!95 &2331257197537475669
 Animator:
   serializedVersion: 5
@@ -206,10 +207,9 @@ GameObject:
   - component: {fileID: 8091119379366436348}
   - component: {fileID: 7285363244264454505}
   - component: {fileID: 5841734767506043058}
-  - component: {fileID: 5398875010436942514}
   m_Layer: 6
   m_Name: GoombaHead
-  m_TagString: Enemies
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,7 +261,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5201448}
+  m_Offset: {x: -0.0024971962, y: 0.5201448}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -272,7 +272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.042110205}
+  m_Size: {x: 0.87512875, y: 0.042110205}
   m_EdgeRadius: 0
 --- !u!114 &5841734767506043058
 MonoBehaviour:
@@ -286,26 +286,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9934bf221ba43c849ab8bd4e3d088010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goombaAnimator: {fileID: 5398875010436942514}
   goomba: {fileID: 350031046518790254}
---- !u!95 &5398875010436942514
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4718596578480338609}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 772d8f8585d09444990307306c4a7a68, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  goombaAnimator: {fileID: 2331257197537475669}
