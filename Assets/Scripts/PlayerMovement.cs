@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     // Start is called before the first frame update
 
@@ -49,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
 
         // update animator state
         marioAnimator.SetBool("onGround", onGroundState);
+
+        // subscribe to scene manager scene change
+        SceneManager.activeSceneChanged += SetStartingPosition;
     }
 
     // Update is called once per frame
@@ -198,5 +203,12 @@ public class PlayerMovement : MonoBehaviour
     {
         gameManager.GameOver();
     }
-
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        if (next.name == "World1-2")
+        {
+            // change the position accordingly in your World-1-2 case
+            this.transform.position = new Vector3(-9.5f, -4.5f, 0.0f);
+        }
+    }
 }
